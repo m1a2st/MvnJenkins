@@ -1,21 +1,19 @@
 pipeline {
     agent any
     stages {
-        stage('clone repo') {
+        stage('--clean--') {
             steps {
-                sh "rm -rf MvnJenkins"
-                sh "git clone https://github.com/m1a2st/MvnJenkins.git"
-                sh "mvn clean -f MvnJenkins"
+                sh "mvn clean"
             }
         }
-        stage('test'){
+        stage('--test--'){
             steps{
-                sh "mvn test -f MvnJenkins"
+                sh "mvn test"
             }
         }
-        stage('Display'){
+        stage('--package--'){
             steps{
-                sh "mvn package -f MvnJenkins"
+                sh "mvn package"
             }
         }
     }
